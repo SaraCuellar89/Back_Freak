@@ -533,7 +533,7 @@ app.post('/reservar', async (req, res) => {
 
     // Verificar si alguna de las sillas ya está reservada
     const [existentes] = await conect.query(
-      'SELECT * FROM Usuario_Sillas WHERE FuncionId_funcion = ? AND SillasId_sillas IN (?)',
+      'SELECT * FROM usuario_sillas WHERE FuncionId_funcion = ? AND SillasId_sillas IN (?)',
       [id_funcion, ids_sillas]
     )
 
