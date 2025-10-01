@@ -19,7 +19,8 @@ app.use(bodyParser.json())
 app.use(express.static("Front"))
 mongoose.connect('mongodb+srv://sara:1234@cluster0.srj5mjr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    tls: true
 })
 .then(() => console.log("MongoDB conectado"))
 .catch(err => console.error("Error MongoDB:", err));
