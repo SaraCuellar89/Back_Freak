@@ -29,7 +29,12 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: 'mongodb+srv://sara:1234@cluster0.srj5mjr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0' }),
-    cookie: { maxAge: 1000 * 60 * 60, secure: false, httpOnly: true } // 1 hora
+    cookie: { 
+        maxAge: 1000 * 60 * 60, // 1 hora
+        secure: process.env.NODE_ENV === 'production', // true solo en producción
+        httpOnly: true,
+        sameSite: 'none'
+    }
 }));
 
 
