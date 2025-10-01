@@ -61,7 +61,7 @@ app.post('/registrar_usuario', async(req, res) => {
             })
         }
 
-        await conect.execute("INSERT INTO Usuario (Nombre, Correo, Contraseña, Rol) VALUES(?, ?, ?, ?)", [nombre, correo, contrasena, rol])
+        await conect.execute("INSERT INTO usuario (Nombre, Correo, Contraseña, Rol) VALUES(?, ?, ?, ?)", [nombre, correo, contrasena, rol])
 
         return res.status(201).json({
             success: true,
