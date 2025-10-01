@@ -1,9 +1,10 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const session = require("express-session")
+const MongoStore = require("connect-mongo")
+const mongoose = require("mongoose")
 const mysql = require ('mysql2/promise')
 const cors = require('cors')
-require('dotenv').config()
 
 
 // -----------------------------------------------------------------------------
@@ -16,16 +17,20 @@ app.use(cors({
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use(express.static("Front"))
+mongoose.connect('mongodb+srv://sara:1234@cluster0.srj5mjr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log("MongoDB conectado"))
+.catch(err => console.error("Error MongoDB:", err));
 app.set('trust proxy', 1)
 app.use(session({
     secret: '1234',
     resave: false,
-    saveUninitialized: true,
-    cookie: {
-        secure: true,
-        sameSite: 'none'
-    }
-}))
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://sara:1234@cluster0.srj5mjr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0' }),
+    cookie: { maxAge: 1000 * 60 * 60, secure: true, httpOnly: true } // 1 hora
+}));
 
 
 // -----------------------------------------------------------------------------
