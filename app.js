@@ -293,10 +293,10 @@ app.post('/sillas_funcion_info', async (req, res) => {
 
         const {Id_funcion} = req.body
 
-        const [sillas] = await conect.execute(`SELECT sillas.Id_sillas, sillas.Fila, sillas.Columna, Usuario_Sillas.FuncionId_funcion, Usuario_Sillas.UsuarioId_usuario
+        const [sillas] = await conect.execute(`SELECT sillas.Id_sillas, sillas.Fila, sillas.Columna, usuario_sillas.FuncionId_funcion, usuario_sillas.UsuarioId_usuario
         FROM sillas
-        INNER JOIN Usuario_Sillas ON sillas.Id_sillas = Usuario_Sillas.SillasId_sillas
-        WHERE Usuario_Sillas.FuncionId_funcion = ?`, [Id_funcion])
+        INNER JOIN usuario_sillas ON sillas.Id_sillas = usuario_sillas.SillasId_sillas
+        WHERE usuario_sillas.FuncionId_funcion = ?`, [Id_funcion])
 
         res.status(200).json({
             success: true,
