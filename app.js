@@ -550,7 +550,7 @@ app.post('/reservar', async (req, res) => {
     // Insertar todas las reservas
     const values = ids_sillas.map(id_silla => [id_usuario, id_silla, id_funcion])
     await conect.query(
-      'INSERT INTO Usuario_Sillas (UsuarioId_usuario, SillasId_sillas, FuncionId_funcion) VALUES ?',
+      'INSERT INTO usuario_sillas (UsuarioId_usuario, SillasId_sillas, FuncionId_funcion) VALUES ?',
       [values]
     )
 
