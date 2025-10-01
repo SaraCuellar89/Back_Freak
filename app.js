@@ -33,11 +33,8 @@ app.use(session({
 const db = {
     host: 'mysql-base1cine.alwaysdata.net',
     user: 'base1cine_admin',
-    password: 'Amaranta_245',
-    database: 'base1cine_cine',
-    ssl: {
-    rejectUnauthorized: true
-    }
+    password: 'contrasena_1234',
+    database: 'base1cine_cine'
 }
 
 
